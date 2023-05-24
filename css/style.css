@@ -15,6 +15,7 @@ body {
   --border-color: #e7e9fc;
   --hero-bg-btn: #4d5ae5;
   --customer-svg: #8e8f99;
+  --cubic: cubic-bezier(0.4, 0, 0.2, 1);
 }
 /* =================== Componets =================== */
 h1,
@@ -143,12 +144,42 @@ button {
   letter-spacing: 0.02em;
   color: var(--color-link);
   padding: 24px 0;
+
+  position: relative;
+  transition: color 250ms var(--cubic);
 }
 
 .menu-link:hover,
 .menu-link:focus {
   color: var(--active-link);
 }
+
+.menu-link::after {
+  content: '';
+
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+
+  background-color: var(--active-link);
+  color: var(--active-link);
+}
+
+.menu-link:not(.current)::after {
+  transform: scaleX(0);
+  transition: transform 250ms var(--cubic);
+}
+
+.menu-link:not(.current):hover::after,
+.menu-link:not(.current):focus::after {
+  transform: scaleX(1);
+}
+
 .address {
   margin-left: auto;
 }
@@ -166,6 +197,15 @@ button {
 .address-link:focus {
   color: var(--active-link);
 }
+
+.current,
+.menu-link:hover,
+.menu-link:focus,
+.adress-link:hover,
+.adress-link:focus {
+  color: var(--active-link);
+}
+
 /* =================== /Header nav =================== */
 
 /* =================== Hero =================== */
@@ -182,6 +222,7 @@ button {
   background-color: #464766;
   padding-top: 188px;
   padding-bottom: 188px;
+  margin: 0 auto;
 }
 
 .hero-title {
@@ -207,6 +248,8 @@ button {
   border-radius: 4px;
   padding: 16px 32px;
   margin: 0 auto;
+
+  transition: background-color 250ms var(--cubic);
 }
 
 .hero-btn:hover,
@@ -236,10 +279,6 @@ button {
   margin-bottom: 8px;
   border-radius: 4px;
 }
-/* .feature-icon {
-  display: block;
-
-} */
 
 /* =================== /Feature =================== */
 
@@ -296,6 +335,8 @@ button {
   padding: 12px;
   border-radius: 50%;
   background-color: #4d5ae5;
+
+  transition: background-color 250ms var(--cubic);
 }
 
 .social-icon {
@@ -305,10 +346,7 @@ button {
 .social-link:focus {
   background-color: var(--active-link);
 }
-/* .social-link:hover .social-icon,
-.social-link:focus .social-icon {
-  fill: var(--active-link);
-} */
+
 /* =================== /Team =================== */
 
 /* =================== Customers =================== */
@@ -324,25 +362,23 @@ button {
   flex-basis: calc((100% - 120px) / 6);
 }
 .customer-link {
+  color: var(--customer-svg);
   display: flex;
   justify-content: center;
   align-items: center;
   height: 88px;
-  border: 1px solid var(--customer-svg);
+  border: 1px solid;
   border-radius: 4px;
-  color: var(--customer-svg);
-}
-.customer-icon {
-  fill: currentColor;
-}
-.customer-link:hover,
-.customer-link:focus {
-  border-color: var(--active-link);
+
+  transition: color 250ms var(--cubic);
 }
 .customer-link:hover,
 .customer-link:focus {
   color: var(--active-link);
-  /* fill: var(--active-link); */
+}
+
+.customer-icon {
+  fill: currentColor;
 }
 /* =================== /Customers =================== */
 
@@ -368,6 +404,9 @@ button {
   padding: 12px 24px;
   border: 1px solid var(--border-color);
   border-radius: 4px;
+
+  transition: background-color 250ms var(--cubic), color 250ms var(--cubic),
+    box-shadow 250ms var(--cubic);
 }
 
 .filter-btn:hover,
@@ -388,6 +427,7 @@ button {
 }
 .card-link {
   display: block;
+  transition: box-shadow 250ms var(--cubic);
 }
 .card-link:hover,
 .card-link:focus {
@@ -399,10 +439,7 @@ button {
   border: 1px solid var(--border-color);
   border-top: none;
 }
-.card-content:hover,
-.card-content:focus {
-  border: 1px solid #f4f4fd;
-}
+
 .card-title {
   margin-bottom: 8px;
 }
