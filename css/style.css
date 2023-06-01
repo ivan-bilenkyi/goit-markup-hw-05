@@ -192,6 +192,7 @@ button {
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: #434455;
+  transition: color var(--cubic);
 }
 .address-link:hover,
 .address-link:focus {
@@ -367,14 +368,15 @@ button {
   justify-content: center;
   align-items: center;
   height: 88px;
-  border: 1px solid;
+  border: 1px solid var(--customer-svg);
   border-radius: 4px;
 
-  transition: color var(--cubic);
+  transition: color var(--cubic), border-color var(--cubic);
 }
 .customer-link:hover,
 .customer-link:focus {
   color: var(--active-link);
+  border-color: var(--active-link);
 }
 
 .customer-icon {
@@ -406,7 +408,7 @@ button {
   border-radius: 4px;
 
   transition: background-color var(--cubic), color var(--cubic),
-    box-shadow var(--cubic);
+    box-shadow var(--cubic), border-color var(--cubic);
 }
 
 .filter-btn:hover,
@@ -527,7 +529,7 @@ button {
   width: 100%;
   height: 100%;
   background-color: rgba(46, 47, 66, 0.4);
-  transition: opasity var(--cubic), visibility var(--cubic);
+  transition: opacity var(--cubic), visibility var(--cubic);
 }
 .backdrop.is-hidden {
   opacity: 0;
@@ -538,9 +540,11 @@ button {
 .modal {
   position: absolute;
   width: 408px;
-  height: 584px;
+  min-height: 584px;
   background-color: #fcfcfc;
-
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
@@ -574,7 +578,7 @@ button {
 .modal-btn:hover,
 .modal-btn:focus {
   background-color: #404bbf;
-  border: 1px solid transparent;
+  border: none;
 }
 
 .modal-btn:focus .close-btn-icon,
